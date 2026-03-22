@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Score Analysis</title>
+
+<style>
+body{
+font-family: Arial;
+text-align:center;
+margin-top:80px;
+}
+
+button{
+padding:10px 20px;
+font-size:16px;
+cursor:pointer;
+margin-top:20px;
+}
+
+#results{
+margin-top:30px;
+font-size:18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Student Score Analysis</h2>
+
+<p>Click the button to calculate student averages and find the top student.</p>
+
+<button onclick="analyzeStudents()">Analyze Scores</button>
+
+<div id="results"></div>
+
+<script>
+
+let students = [
+{ name: 'Alice', age: 22, scores: [78, 85, 92] },
+{ name: 'Bob', age: 20, scores: [88, 90, 76] },
+{ name: 'Charlie', age: 21, scores: [95, 80, 85] }
+];
+
+function analyzeStudents(){
+
+let topStudent = "";
+let highestAvg = 0;
+let output = "";
+
+students.forEach(student => {
+
+let sum = student.scores.reduce((a,b)=>a+b,0);
+let avg = sum / student.scores.length;
+
+output += `<p>${student.name} Average Score: ${avg.toFixed(2)}</p>`;
+
+if(avg > highestAvg){
+highestAvg = avg;
+topStudent = student.name;
+}
+
+});
+
+output += `<h3>Top Student: ${topStudent} with an average score of ${highestAvg.toFixed(2)}</h3>`;
+
+document.getElementById("results").innerHTML = output;
+
+}
+
+</script>
+
+</body>
+</html>
